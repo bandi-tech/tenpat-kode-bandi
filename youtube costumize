@@ -1,0 +1,29 @@
+[SHARE]
+ijin sedikit share (squid 3.xxx untuk squid 2.7/LUSCA sesuaikan lagi)
+### paksa youtube dan google menjadi HTTP (PC only)
+acl google url_regex -i (google.com|google.co.id|googlevideo.com|www.youtube.com)
+acl iphone browser -i regexp (iPhone|iPad)
+acl BB browser -i regexp (BlackBerry|PlayBook)
+acl Winphone browser -i regexp (Windows.*Phone|Trident|IEMobile)
+acl Android browser -i regexp Android
+request_header_access User-Agent deny google !iphone !BB !Winphone !Android
+request_header_replace User-Agent Mozilla/5.0 (compatible; Googlebot/2.1; +http://www.google.com/bot.html)
+### paksa youtube 240p
+acl itagyoutube url_regex -i ^http.*videoplayback.*itag\=(134|135|136|137|138|160|264|266|298|299|167|168|169|170|218|219|243|244|245|246|247|248|271|272|278|302|303|308|313|315).*
+http_access deny itagyoutube
+### ROL none untuk garena dan tales hero, selain itu ROL 1 KB
+acl rolnone url_regex -i ^https?\:\/\/.*\/th\/patch\/.*
+acl rolnone url_regex -i ^http.*garena.*
+quick_abort_min 0 KB
+quick_abort_max 0 KB
+quick_abort_pct 100
+range_offset_limit none rolnone
+range_offset_limit 1 KB !rolnone
+### paksa looping dan mime html menjadi miss (hanya support untuk squid yg udah di patch)
+acl httptomiss http_status 302
+acl httptomiss http_status 301
+acl mimetomiss rep_mime_type -i mime-type ^text/html
+store_miss deny httptomiss
+send_hit deny httptomiss
+store_miss deny mimetomiss
+send_hit deny mimetomiss
