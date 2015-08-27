@@ -35,7 +35,7 @@ if ($bypassallrules){
 # redirector
 # ============================================================= #
 } elsif ($u=~ m/^https?\:\/\/redirector.c.googlesyndication.com\/videoplayback\/id\/(.*)\/file\/(.*)\/(.*\.flv)/){
-    $out="OK store-id=http://video.google.com.squid.internal/redirector/" . $1 . "/" . $3 ;
+    	$out="OK store-id=http://video.google.com.squid.internal/redirector/" . $1 . "/" . $3 ;
 
 # ============================================================= #
 # Facebook
@@ -50,10 +50,10 @@ if ($bypassallrules){
 	$out="OK store-id=http://cdn.fbcdn/" . $2 ;
 
 } elsif ($u=~ m/^https?\:\/\/.*(profile|photo|creative).*\.ak\.fbcdn\.net\/((h|)(profile|photos)-ak-)(snc|ash|prn)[0-9]?(.*)/) {
-    $out="OK store-id=http://fbcdn.net.squid.internal/" . $2  . "fb" .  $6 ;
+    	$out="OK store-id=http://fbcdn.net.squid.internal/" . $2  . "fb" .  $6 ;
 
 } elsif ($u=~ m/^https?:\/\/.*(profile|photo|creative)*.akamaihd\.net\/((h|)(profile|photos|ads)-ak-)(snc|ash|prn|frc[0-9])[0-9]?(.*)/) {
-    $out="OK store-id=http://fbcdn.net.squid.internal/" . $2  . $5 .  $6 ;
+    	$out="OK store-id=http://fbcdn.net.squid.internal/" . $2  . $5 .  $6 ;
 
 } elsif ($u=~ m/^https?\:\/\/video\.(.*)\.fbcdn\.net\/(.*?)\/([0-9_]+\.(mp4|flv|avi|mkv|m4v|mov|wmv|3gp|mpg|mpeg)?)(.*)/) {
 	$out="OK store-id=http://video.ak.fbcdn.net/" . $1 ;
@@ -62,7 +62,7 @@ if ($bypassallrules){
 # Ytimg
 # ============================================================= #
 } elsif ($u=~ m/^https?\:\/\/i[1-4]\.ytimg\.com\/(.*)/) {
-    $out="OK store-id=http://ytimg.com.squid.internal/" . $1 ;
+    	$out="OK store-id=http://ytimg.com.squid.internal/" . $1 ;
 
 } elsif ($u=~ m/^https?\:\/\/lh[0-9]?.ggpht.com\/(.*?)\/(.*?)\/(.*?)\/(.*)\/(.*)?$/) {
 	$out="OK store-id=http://ggpht.squid.internal/"  . $1 . "/" .  $2 . "/" . $4 .  "/" .  $5 ;
@@ -95,7 +95,7 @@ if ($bypassallrules){
 # Sourcefrog
 # ============================================================= #
 } elsif ($u=~ m/^http:\/\/.*\.dl\.sourceforge\.net\/(.*)/) {
-    $out="OK store-id=http://dl.sourceforge.net.squid.internal/" . $1 ;
+    	$out="OK store-id=http://dl.sourceforge.net.squid.internal/" . $1 ;
 		
 # ========================================== #
 # 4shared
@@ -115,13 +115,13 @@ if ($bypassallrules){
 # Maps.Google.com
 # ============================================================= #
 } elsif ($u=~ m/^https?\:\/\/(cbk|mt|khm|mlt|tbn)[0-9]?(.google\.co(m|\.uk|\.id).*)/) {
-    $out="OK store-id=http://" . $1  . $2 ;
+    	$out="OK store-id=http://" . $1  . $2 ;
 
 # ============================================================= #
 # gstatic and/or wikimapia
 # ============================================================= #
 } elsif ($u=~ m/^http:\/\/([a-z])[0-9]?(\.gstatic\.com.*|\.wikimapia\.org.*)/) {
-    $out="OK store-id=http://" . $1  . $2 ;
+    	$out="OK store-id=http://" . $1  . $2 ;
 		
 # ============================================================= #
 # Google Play Store
@@ -244,13 +244,13 @@ if ($bypassallrules){
     s/&slotname=[^&]*//;
     s/&page_slots=[^&]*//;
     }
-    $out="OK store-id=http://" . $1 . $2 . $y ;
+    	$out="OK store-id=http://" . $1 . $2 . $y ;
 
 # ============================================================= #
 # Ziddu
 # ============================================================= #
 } elsif ($u=~ m/^http:\/\/(www\.ziddu\.com.*\.[^\/]{3,4})\/(.*?)/) {
-    $out="OK store-id=http://" . $1 ;
+    	$out="OK store-id=http://" . $1 ;
 
 # ============================================================= #
 # cdn, varialble 1st path
@@ -258,25 +258,25 @@ if ($bypassallrules){
 } elsif ((/filehippo/) && (m/^http:\/\/(.*?)\.(.*?)\/(.*?)\/(.*)\.([a-z0-9]{3,4})(\?.*)?/)) {
     @y = ($1,$2,$4,$5);
     $y[0] =~ s/[a-z0-9]{2,5}/cdn./;
-    $out="OK store-id=http://" . $y[0] . $y[1] . "/" . $y[2] . "." . $y[3] ;
+    	$out="OK store-id=http://" . $y[0] . $y[1] . "/" . $y[2] . "." . $y[3] ;
 
 # ============================================================= #
 # Rapidshare
 # ============================================================= #
 } elsif ((/rapidshare/) && (m/^http:\/\/(([A-Za-z]+[0-9-.]+)*?)([a-z]*\.[^\/]{3}\/[a-z]*\/[0-9]*)\/(.*?)\/([^\/\?\&]{4,})$/)) {
-    $out="OK store-id=http://cdn." . $3 . "/squid.internal/" . $5 ;
+    	$out="OK store-id=http://cdn." . $3 . "/squid.internal/" . $5 ;
 
 # ============================================================= #
 # for yimg.com video
 # ============================================================= #
 } elsif ($u=~ m/^https?\:\/\/(.*yimg.com)\/\/(.*)\/([^\/\?\&]*\/[^\/\?\&]*\.[^\/\?\&]{3,4})(\?.*)?$/) {
-    $out="OK store-id=http://cdn.yimg.com/" . $3 ;
+    	$out="OK store-id=http://cdn.yimg.com/" . $3 ;
 
 # ============================================================= #
 # for yimg.com doubled
 # ============================================================= #
 } elsif ($u=~ m/^https?\:\/\/(.*?)\.yimg\.com\/(.*?)\.yimg\.com\/(.*?)\?(.*)/) {
-    $out="OK store-id=http://cdn.yimg.com/"  . $3 ;
+    	$out="OK store-id=http://cdn.yimg.com/"  . $3 ;
 
 # ============================================================= #
 # for yimg.com with &sig=
@@ -285,14 +285,14 @@ if ($bypassallrules){
     @y = ($1,$2);
     $y[0] =~ s/[a-z]+([0-9]+)?/cdn/;
     $y[1] =~ s/&sig=.*//;
-    $out="OK store-id=http://" . $y[0] . ".yimg.com/"  . $y[1] ;
+	 $out="OK store-id=http://" . $y[0] . ".yimg.com/"  . $y[1] ;
 
 # ============================================================= #
 # indowebster
 # ============================================================= #
 } elsif ($u=~ m/^https?\:\/\/(.*?)(\.jkt\.3d\.x\.indowebster.com)\/(.*?)\/([^\/\?\&]*)\.([^\/\?\&]{2,4})(\?.*?)$/) {
-	@y = ($1,$2,$4,$5);
-	$y[0] =~ s/([a-z][0-9][a-z]dlod[\d]{3})|((cache|cdn)[-\d]*)|([a-zA-Z]+-?[0-9]+(-[a-zA-Z]*)?)/cdn/;
+    @y = ($1,$2,$4,$5);
+    $y[0] =~ s/([a-z][0-9][a-z]dlod[\d]{3})|((cache|cdn)[-\d]*)|([a-zA-Z]+-?[0-9]+(-[a-zA-Z]*)?)/cdn/;
 	$out="OK store-id=http://" . $y[0] . $y[1] . "/" . $y[2] . "." . $y[3] ;
 
 # ============================================================= #
